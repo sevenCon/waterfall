@@ -1,0 +1,26 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	
+}
+.parent{
+	position: relative;
+}
+.box{
+	width:180px;
+	border:1px solid #999;
+	border-radius: 5px;
+	box-shadow: 2px 0px 3px #D68080;
+	padding:10px;
+}
+.pin{
+	padding:10px 0 0 10px;
+	width:202px;
+	height:auto;
+	float:left;	
+}
+.box img{
+	width:180px;
+}
