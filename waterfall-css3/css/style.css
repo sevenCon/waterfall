@@ -6,6 +6,10 @@ body{
 	
 }
 .parent{
+	-ms-column-width:202px;
+	-moz-column-width:202px;
+	-webkit-column-width:202px;
+	column-width:202px;
 	position: relative;
 }
 .box{

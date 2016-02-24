@@ -1,14 +1,15 @@
-var waterflow=[];
+var waterflow=[];  //array per column height
 
 $(function(){
 	waterfall();
+	//simulate the data from server
 	var dataImg = [ {"src":"img/P_01.jpg"},
 					{"src":"img/P_02.jpg"},
 					{"src":"img/P_03.jpg"},
 					{"src":"img/P_04.jpg"},
 					{"src":"img/P_05.jpg"},
 					{"src":"img/P_06.jpg"}];
-
+	// onscroll to load the new img 				
 	$(document).on('scroll',function(){
 		if(checkIsLoadable()){
 			var eleFragment = document.createDocumentFragment();
@@ -23,7 +24,7 @@ $(function(){
 		}
 	})
 });
-
+// waterfall function ,reflow all the img position
 function waterfall(){
 	// waterfall layout
 	waterflow = [];
@@ -45,8 +46,9 @@ function waterfall(){
 		}
 	});
 }
-
+// check is loadable
 function checkIsLoadable(){
+
 	var oParent = $("#parent");
 	var oBoxs = $(".pin");
 	var scrollT = document.body.scrollTop||document.documentElement.scrollTop;
@@ -54,9 +56,9 @@ function checkIsLoadable(){
 
 	var inde = waterflow.indexOf(Math.min.apply(null,waterflow));
 	var boxOffset = waterflow[inde]+parseInt(oBoxs.eq(0).outerHeight()/2);
-	if(boxOffset<offsetTop){
-		console.log('offsetTop:'+offsetTop+",top:"+boxOffset);
+	if(boxOffset < offsetTop){
 		return true;
 	}
-	// return false;
+	return false;
+
 }
