@@ -10,18 +10,19 @@ $(function(){
 					{"src":"img/P_06.jpg"}];
 
 	$(document).on('scroll',function(){
-		var eleFragment = document.createDocumentFragment();
-		dataImg.forEach(function(ele){
-			var oPa = $("<div>").addClass("pin");
-			var oBox = $("<div>").addClass("box").appendTo(oPa);	
-			var oDiv = $("<img>").attr('src',ele['src']).appendTo(oBox);
-			$(eleFragment).append(oPa);
-			$("#parent").append($(eleFragment));
-		})
-		waterfall();
-		})
-
-	});
+		if(checkIsLoadable()){
+			var eleFragment = document.createDocumentFragment();
+			dataImg.forEach(function(ele){
+				var oPa = $("<div>").addClass("pin");
+				var oBox = $("<div>").addClass("box").appendTo(oPa);	
+				var oDiv = $("<img>").attr('src',ele['src']).appendTo(oBox);
+				$(eleFragment).append(oPa);
+				$("#parent").append($(eleFragment));
+			})
+			waterfall();
+		}
+	})
+});
 
 function waterfall(){
 	// waterfall layout
@@ -43,4 +44,19 @@ function waterfall(){
 			waterflow[minIndex] += $(element).outerHeight();
 		}
 	});
+}
+
+function checkIsLoadable(){
+	var oParent = $("#parent");
+	var oBoxs = $(".pin");
+	var scrollT = document.body.scrollTop||document.documentElement.scrollTop;
+	var offsetTop = scrollT + document.body.clientHeight||document.documentElement.clientHeight;
+
+	var inde = waterflow.indexOf(Math.min.apply(null,waterflow));
+	var boxOffset = waterflow[inde]+parseInt(oBoxs.eq(0).outerHeight()/2);
+	if(boxOffset<offsetTop){
+		console.log('offsetTop:'+offsetTop+",top:"+boxOffset);
+		return true;
+	}
+	// return false;
 }
